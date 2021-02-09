@@ -1,21 +1,37 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import { StyleSheet} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
+
+import HomePage from './Pages/HomePage';
+import NoteCategoryPage from './Pages/NoteCategoryPage';
+import NotePage from './Pages/NotePage';
+import AddCategoryPage from './Pages/AddCategoryPage';
+import ViewNotePage from './Pages/ViewNotePage';
+
+
+const Stack = createStackNavigator();
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{headerShown:false}} initialRouteName='Home Page'>
+            <Stack.Screen name='Home Page' component={HomePage}/>
+            <Stack.Screen name='Add Category' component={AddCategoryPage}/>
+            <Stack.Screen name='NoteCategoryPage' component={NoteCategoryPage}/>
+            <Stack.Screen name='NotePage' component={NotePage}/>
+            <Stack.Screen name='ViewNotePage' component={ViewNotePage}/>
+          </Stack.Navigator>
+      </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor:'#fff'
   },
 });
